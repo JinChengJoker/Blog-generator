@@ -7,7 +7,7 @@ title: JinCheng's Blog
 subtitle:
 description: 嬉皮笑脸面对人生的难
 keywords: 前端 front-end JavaScript
-author: JinCheng
+author: 金成Joker
 language: zh-Hans
 timezone:
 
@@ -74,6 +74,31 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+# theme_config 在这里配置主题
+theme_config:
+  # Schemes
+  # scheme: Muse
+  # scheme: Mist
+  #scheme: Pisces
+  scheme: Gemini
+
+  # Sidebar Avatar
+  # in theme directory(source/images): /images/avatar.gif
+  # in site  directory(source/uploads): /uploads/avatar.gif
+  avatar: https://i.loli.net/2018/04/27/5ae331c4ac6c1.jpg
+
+  # Post meta display settings
+  post_meta:
+    item_text: true
+    created_at: true
+    updated_at:
+      enabled: false
+      # If true, show updated date label only if `updated date` different from 'created date' (post edited in another day than was created).
+      # And if post will edited in same day as created, edited time will show in popup title under created time label.
+      # If false show anyway, but if post edited in same day, show only edited time.
+      another_day: true
+    categories: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
