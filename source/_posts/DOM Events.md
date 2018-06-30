@@ -107,6 +107,14 @@ btn.addEventListener('click', f1)
 
 ![事件模型](https://user-gold-cdn.xitu.io/2018/6/26/16437f011e9385db?w=1579&h=918&f=png&s=573945)
 
+### 阻止事件冒泡
+
+```javascript
+e.stopPropagation()
+```
+
+[示例（popover）](https://github.com/JinChengJoker/stopPropagation-demo)
+
 
 ## DOM Level 3
 
