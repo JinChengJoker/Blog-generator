@@ -12,9 +12,9 @@ date: 2018-07-05 01:46:17
 ```javascript
 let request = new XMLHttpRequest()  // 创建 HTTP 请求对象
 request.open('POST', '/xxx')  // 初始化请求，默认为异步
-request.setRequestHeader('Content-Type', 'x-www-form-urlencoded')
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
 request.send('这是要发送的数据')  // 发送请求
-request.onreadystatechange = () = {
+request.onreadystatechange = () => {
     if(request.readyState === 4) {  // 请求和响应已完毕
         if(request.status >= 200 && request.status < 300) {
             console.log('请求成功')
@@ -39,6 +39,52 @@ request.onreadystatechange = () = {
     - `3` 正在下载响应体。响应体下载中，`responseText` 中已经获取了部分数据
     - `4` 请求完成。整个请求过程已经完毕
 - `getResponseHeader()` 可以获取 HTTP 响应头。
+
+
+## 封装简易的 jquery.ajax
+
+前置代码：[实现一个简易的 jQuery](https://jinchengjoker.github.io/2018/05/03/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%89%88jQueryAPI/)
+
+### 封装
+
+```javascript
+window.jquery.ajax = function({ method, url, headers, data, successFn, failFn }) {
+    let request = new XMLHttpRequest()
+    request.open(method, url)
+    for(let key in headers) {
+        request.setRequestHeader(key, headers[key])
+    }
+    request.send(data)
+    request.onreadystatechange = () => {
+        if (request.readyState === 4) {
+            if (request.status >= 200 && request.status < 300) {
+                successFn(request.responseText)
+            } else if (request.status >= 400) {
+                failFn(request)
+            }
+        }
+    }
+}
+```
+
+### 调用
+
+```javascript
+window.jquery.ajax({
+    method: 'POST',
+    url: '/xxx',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: '这是要发送的数据',
+    successFn: function(res) {
+        console.log(res)
+    },
+    failFn: function(res) {
+        console.log(res)
+    }
+})
+```
 
 
 ## 同源策略
